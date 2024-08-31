@@ -1,0 +1,13 @@
+.custon-card {
+  min-height: 60px !important;
+}
+
+.card {
+  cursor: move;
+}
+
+.header {
+  padding: 0.3rem 0 0.3rem 1rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}

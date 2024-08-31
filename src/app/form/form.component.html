@@ -1,0 +1,42 @@
+<div class="ui container contain">
+  <div class="top">
+    <h2 class="">Create New Task</h2>
+    <button class="ui button basic" (click)="goToDashboard()">
+      Go to dashboard <i class="arrow right icon"></i>
+    </button>
+  </div>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="ui form">
+    <div class="field required">
+      <label>Title</label>
+      <input formControlName="title" placeholder="Enter task title" />
+      <div class="ui pointing red basic label" *ngIf="inputError('title')">
+        Title is required
+      </div>
+    </div>
+    <div class="field required">
+      <label>Description</label>
+      <textarea
+        formControlName="description"
+        placeholder="Enter task description"
+        rows="3"
+      ></textarea>
+      <div
+        class="ui pointing red basic label"
+        *ngIf="notTooLong() || inputError('description')"
+      >
+        {{
+          notTooLong()
+            ? "Description cannot exceed 15 words."
+            : "A description is required"
+        }}
+      </div>
+    </div>
+    <button
+      class="ui button teal"
+      type="submit"
+      [disabled]="taskForm.invalid || notTooLong()"
+    >
+      Create Task
+    </button>
+  </form>
+</div>

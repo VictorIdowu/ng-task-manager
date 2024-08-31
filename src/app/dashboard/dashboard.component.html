@@ -1,0 +1,71 @@
+<div class="ui container contain">
+  <div class="top">
+    <h2>Dashboard</h2>
+    <button class="ui basic button" (click)="goToForm()">
+      <i class="plus icon teal"></i>
+      Add New Task
+    </button>
+  </div>
+
+  <div class="ui three column grid">
+    <div class="column">
+      <h3 class="ui label blue">New Task</h3>
+      <div
+        #newList="cdkDropList"
+        class="custon-card"
+        cdkDropList
+        [cdkDropListData]="tasks['New Task']"
+        [cdkDropListConnectedTo]="[inProgressList, doneList]"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        @for (task of tasks['New Task']; track $index) {
+
+        <div class="ui card" cdkDrag>
+          <div class="header">{{ task.title }}</div>
+          <div class="description content">{{ task.description }}</div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="column">
+      <h3 class="ui label orange">In Progress</h3>
+      <div
+        #inProgressList="cdkDropList"
+        class="custon-card"
+        cdkDropList
+        [cdkDropListData]="tasks['In Progress']"
+        [cdkDropListConnectedTo]="[newList, doneList]"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        @for (task of tasks['In Progress']; track $index) {
+
+        <div class="ui card" cdkDrag>
+          <div class="header">{{ task.title }}</div>
+          <div class="description content">{{ task.description }}</div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="column">
+      <h3 class="ui label teal">Done</h3>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="tasks['Done']"
+        [cdkDropListConnectedTo]="[inProgressList, newList]"
+        (cdkDropListDropped)="onDrop($event)"
+        class="custon-card"
+      >
+        @for (task of tasks['Done']; track $index) {
+
+        <div class="ui card" cdkDrag>
+          <div class="header">{{ task.title }}</div>
+          <div class="description content">{{ task.description }}</div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
