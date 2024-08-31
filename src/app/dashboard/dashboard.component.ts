@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { Task, TaskService } from '../task.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Button } from '../button.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, CdkDropList, CdkDrag],
+  imports: [CommonModule, CdkDropList, CdkDrag, Button],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -18,11 +19,16 @@ export class DashboardComponent {
     this.tasks = this.taskService.tasks;
   }
 
-  onDrop(event: CdkDragDrop<Task[]>) {
-    this.taskService.updateTaskStatus(event);
+  isEmpty() {
+    let empty = true;
+    Object.values(this.tasks).forEach((arr) => {
+      if (arr.length > 0) empty = false;
+    });
+
+    return empty;
   }
 
-  goToForm() {
-    this.router.navigate(['/form']);
+  onDrop(event: CdkDragDrop<Task[]>) {
+    this.taskService.updateTaskStatus(event);
   }
 }

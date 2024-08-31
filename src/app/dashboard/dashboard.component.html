@@ -1,10 +1,7 @@
 <div class="ui container contain">
   <div class="top">
     <h2>Dashboard</h2>
-    <button class="ui basic button" (click)="goToForm()">
-      <i class="plus icon teal"></i>
-      Add New Task
-    </button>
+    <app-button *ngIf="!isEmpty()"></app-button>
   </div>
 
   <div class="ui three column grid">
@@ -67,5 +64,10 @@
         }
       </div>
     </div>
+  </div>
+
+  <div *ngIf="isEmpty()" class="empty">
+    <h3>You have not added any task</h3>
+    <app-button></app-button>
   </div>
 </div>
