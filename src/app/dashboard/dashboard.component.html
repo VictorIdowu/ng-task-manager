@@ -4,6 +4,10 @@
     <app-button *ngIf="!isEmpty()"></app-button>
   </div>
 
+  <p *ngIf="!isEmpty()" class="ui label">
+    Drag and drop task items to change status
+  </p>
+
   <div class="ui three column grid">
     <div class="column">
       <h3 class="ui label blue">New Task</h3>

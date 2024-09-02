@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-button',
   standalone: true,
   imports: [],
-  template: `<button class="ui basic button" (click)="goToForm()">
+  template: `<button class="ui basic button teal" (click)="goToForm()">
     <i class="plus icon teal"></i>
     Add New Task
   </button>`,
